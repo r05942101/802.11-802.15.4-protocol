@@ -1,0 +1,28 @@
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdio.h>
+#include "autonet.h"
+
+int main(void)
+{
+	
+	uint8_t tx_length;
+	uint8_t Type;
+	uint16_t Addr = 0x0009;
+	uint8_t tx_msg[1] = {Addr};
+	uint8_t radio_channel;
+	uint16_t radio_panID;
+	
+	Type = Type_Light;
+	
+	radio_channel = 25;
+	radio_panID = 0x0001;
+	
+	Initial(Addr, Type, radio_channel, radio_panID);
+	
+	while(1){
+			tx_length = 1;
+			RF_Tx(0x0001,tx_msg,tx_length);
+	}
+}
